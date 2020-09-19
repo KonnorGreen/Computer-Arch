@@ -1,7 +1,7 @@
 def main():
 
-    binMulti = input("Enter Binary Number 1: ")  # 0100 4
-    binCand = input("Enter Binary Number 2: ")  # 0111 7
+    binMulti = input("Enter Multiplier in binary: ") 
+    binCand = input("Enter Multiplicand in binary: ") 
     dec1 = binaryToDecimal(binMulti)
     dec2 = binaryToDecimal(binCand)
 
@@ -10,6 +10,7 @@ def main():
     print("Product:", product)
 
     check = [int(product[7]), 0]
+    #For loop runs 4 times in this instance because the most bits it can have is 4
     for i in range(4):
         print(check[0], check[1])
         product = checkPair(product,binCand,check)
@@ -17,7 +18,7 @@ def main():
         check[0] = int(product[7])
     print("{} ({}) * {} ({}) = {}".format(binMulti, dec1, binCand, dec2, product))
 
-
+#Checks the LSB and the check for the ALGO rules
 def checkPair(num, multica,check):
     if (check[0] == 0 and check[1] == 0):
             num = right_shift(num)
@@ -29,9 +30,9 @@ def checkPair(num, multica,check):
             num = right_shift(add(num, twos_compliment(multica)))
     return num
 
-
+#Adds the left side of the product and the Multiplicand together and updates the product register
 def add(prod, cand):
-    fourdig, mult = prod[:len(prod)//2],  prod[len(prod)//2:]
+    fourdig, mult = prod[:len(prod)//2],  prod[len(prod)//2:] #splits the product register into two halves
     result = bin(int(fourdig, 2) + (int(cand, 2)))[2:].zfill(4)
     result = result + mult
     if (len(result) == 9):
@@ -41,7 +42,6 @@ def add(prod, cand):
 
 
 # Shifts all binary digits to right
-
 def right_shift(num):
     numList = [int(d) for d in str(num)]
     if (numList[0] == 0):
@@ -73,8 +73,6 @@ def twos_compliment(num):
     return (binary[2:].zfill(4))
 
 # Convert Binary To Decimal
-
-
 def binaryToDecimal(binary):
     binary = str(binary)
     decimal = int(binary, 2)

@@ -2,10 +2,10 @@
 # divide by 2 = shift right 1, by 4 shift right 2
 def main():
     binary = input("Enter an 8-bit binary number: ")
-    print("Multiply by 2: ",rshift(binary))
-    print("Multiply by 4: ",lshift(binary))
-    print("Divide by 2: ",rshift(rshift(binary)))
-    print("Divide by 4: ",lshift(lshift(binary)))
+    print("Multiply by 2: ",lshift(binary))
+    print("Multiply by 4: ",lshift(lshift(binary)))
+    print("Divide by 2: ",rshift(binary))
+    print("Divide by 4: ",rshift(rshift(binary)))
 
 
 def lshift(bina):
